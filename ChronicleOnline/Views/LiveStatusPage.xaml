@@ -2,9 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChronicleOnline.Views.LiveStatusPage"
+             xmlns:converters="clr-namespace:ChronicleOnline.Converters"
              Title="LiveStatusPage"
              BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
-    
+
+    <ContentPage.Resources>
+        <converters:StatusToColorConverter x:Key="StatusToColorConverter" />
+        <converters:StatusToLabelConverter x:Key="StatusToLabelConverter" />
+    </ContentPage.Resources>
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="⊟" Order="Primary" Priority="0" />
     </ContentPage.ToolbarItems>
@@ -106,7 +112,7 @@
                                              HeightRequest="10"
                                              HorizontalOptions="End"
                                              VerticalOptions="End"
-                                             Fill="{Binding Status}" />
+                                             Fill="{Binding Status, Converter={StaticResource StatusToColorConverter}}" />
                                     </Grid>
 
                                 </VerticalStackLayout>
@@ -118,7 +124,7 @@
                                            FontSize="15"
                                            FontAttributes="Bold"
                                            TextColor="#1A1A1A" />
-                                    <Label Text="{Binding Status}"
+                                    <Label Text="{Binding Status, Converter={StaticResource StatusToLabelConverter}}"
                                            FontSize="13"
                                            TextColor="#666666" />
                                 </StackLayout>

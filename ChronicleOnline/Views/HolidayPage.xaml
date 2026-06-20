@@ -5,7 +5,9 @@
              Title="HolidayPage">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Holiday Page"
+            FontSize="Large"
+            FontAttributes="Bold"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
