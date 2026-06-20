@@ -7,7 +7,7 @@
     xmlns:views="clr-namespace:ChronicleOnline.Views"
     Title="ChronicleOnline"
     Shell.FlyoutBehavior="Flyout"
-    FlyoutBackgroundColor="{AppThemeBinding Light=White, Dark=Gray}">
+    FlyoutBackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
 
     <!--<Shell.FlyoutHeader>
         <VerticalStackLayout BackgroundColor="{AppThemeBinding Light=White, Dark=#1A1A1A}">
