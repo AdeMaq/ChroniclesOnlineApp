@@ -1,0 +1,94 @@
+############################
+# Build Folders
+############################
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+artifacts/
+publish/
+
+############################
+# Visual Studio Community
+############################
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+############################
+# Visual Studio Code
+############################
+.vscode/
+
+############################
+# Rider
+############################
+.idea/
+*.DotSettings.user
+_ReSharper*/
+
+############################
+# NuGet
+############################
+*.nupkg
+*.snupkg
+packages/
+
+############################
+# Logs and Temporary Files
+############################
+*.log
+*.tmp
+*.temp
+*.cache
+*.bak
+*.old
+*.orig
+
+############################
+# Android
+############################
+*.apk
+*.aab
+*.ap_
+*.dex
+*.keystore
+*.jks
+*.hprof
+
+############################
+# iOS / MacCatalyst
+############################
+*.mobileprovision
+*.p12
+
+############################
+# Databases
+############################
+*.db
+*.sqlite
+*.sqlite3
+
+############################
+# OS Files
+############################
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+############################
+# Secrets and Local Settings
+############################
+appsettings.Development.json
+secrets.json
+
+############################
+# Test Results
+############################
+TestResults/
+
+############################
+# Generated Files
+############################
+*.assemblies.cache
