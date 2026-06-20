@@ -5,7 +5,9 @@
              Title="FireReportPage">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Fire Report Page"
+            FontSize="Large"
+            FontAttributes="Bold"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
