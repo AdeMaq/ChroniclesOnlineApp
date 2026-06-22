@@ -1,5 +1,4 @@
 using ChronicleOnline.ViewModels;
-
 namespace ChronicleOnline.Views;
 
 

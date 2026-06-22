@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChronicleOnline.Views.HomePage"
-             Title="HomePage">
+             Title="HomePage"
+             BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight},
+                                                Dark={StaticResource PageBackgroundDark}}">
     
     <VerticalStackLayout>
         <Label 

@@ -41,4 +41,36 @@
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+    
+    <!---My Color Dictionary-->
+    
+    <Color x:Key="PageBackgroundLight">White</Color>
+    <Color x:Key="PageBackgroundDark">Black</Color>
+
+    <Color x:Key="SurfaceColorLight">White</Color>
+    <Color x:Key="SurfaceColorDark">#1E1E1E</Color>
+
+    <Color x:Key="PrimaryTextLight">Black</Color>
+    <Color x:Key="PrimaryTextDark">White</Color>
+
+    <Color x:Key="InvertedTextLight">White</Color>
+    <Color x:Key="InvertedTextDark">White</Color>
+
+    <Color x:Key="FlyoutBackgroundLight">White</Color>
+    <Color x:Key="FlyoutBackgroundDark">Black</Color>
+
+
+    <Color x:Key="LogoBarPrimaryLight">Black</Color>
+    <Color x:Key="LogoBarPrimaryDark">White</Color>
+    <Color x:Key="LogoBarAccent">#F39C12</Color>
+    <Color x:Key="BrandAccent">#F39C12</Color>
+    
+    <Color x:Key="StatusOnline">#4CAF50</Color>
+    <Color x:Key="StatusAway">#FFC107</Color>
+    <Color x:Key="StatusOffline">#9E9E9E</Color>
+    
+    <Color x:Key="AvatarBackground">#607D8B</Color>
+    <Color x:Key="CardStroke">#BDBDBD</Color>
+    <Color x:Key="DangerColor">Red</Color>
+    
 </ResourceDictionary>
