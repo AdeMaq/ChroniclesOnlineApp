@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChronicleOnline.Views.FireReportPage"
-             Title="FireReportPage">
+             Title="FireReportPage"
+             BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight},
+                                                Dark={StaticResource PageBackgroundDark}}">
     <VerticalStackLayout>
         <Label 
             Text="Fire Report Page"

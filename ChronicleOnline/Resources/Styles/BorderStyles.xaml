@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style x:Key="ListCardBorder" TargetType="Border">
+        <Setter Property="Margin"          
+                Value="0,4" />
+        <Setter Property="Stroke"          
+                Value="{StaticResource CardStroke}" />
+        <Setter Property="StrokeThickness" 
+                Value="1" />
+        <Setter Property="BackgroundColor" 
+                Value="{AppThemeBinding Light={StaticResource SurfaceColorLight},
+                                                                    Dark={StaticResource SurfaceColorDark}}" />
+    </Style>
+
+    <Style x:Key="DropdownBorder" TargetType="Border">
+        <Setter Property="Stroke"          
+                Value="Gray" />
+        <Setter Property="StrokeThickness" 
+                Value="2" />
+        <Setter Property="BackgroundColor" 
+                Value="{AppThemeBinding Light={StaticResource SurfaceColorLight},
+                                                                    Dark={StaticResource SurfaceColorDark}}" />
+    </Style>
+
+</ResourceDictionary>
