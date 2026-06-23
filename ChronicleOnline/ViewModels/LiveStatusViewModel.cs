@@ -43,6 +43,8 @@ namespace ChronicleOnline.ViewModels
         public ICommand PreviousDayCommand { get; }
         public ICommand NextDayCommand { get; }
 
+        public ICommand TapPersonCommand { get; }
+
         public LiveStatusViewModel()
         {
             RefreshCommand = new Command(
@@ -50,8 +52,38 @@ namespace ChronicleOnline.ViewModels
                 canExecute: () => !IsRefreshing);
             PreviousDayCommand = new Command(() => SelectedDate = SelectedDate.AddDays(-1));
             NextDayCommand = new Command(() => SelectedDate = SelectedDate.AddDays(1));
+            TapPersonCommand = new Command<Person>(OnPersonTapped);
 
             _ = LoadPersonsAsync();
+        }
+
+        //private void OnPersonTapped(Person person)
+        //{
+        //    if (person is null || person.Status == StatusType.Exception)
+        //        return;
+
+        //    person.Status = person.Status == StatusType.NotClockedIn
+        //        ? StatusType.ClockedIn
+        //        : StatusType.NotClockedIn;
+        //}
+
+        private async void OnPersonTapped(Person person)
+        {
+            if (person is null) 
+                return;
+
+            if (person.Status == StatusType.Exception)
+            {
+                person.Status = StatusType.PersonNotFound;
+                await Task.Delay(1000);
+                if (person.Status == StatusType.PersonNotFound)
+                    person.Status = StatusType.Exception;
+                return;
+            }
+
+            person.Status = person.Status == StatusType.NotClockedIn
+                ? StatusType.ClockedIn
+                : StatusType.NotClockedIn;
         }
 
         private async Task LoadPersonsAsync()

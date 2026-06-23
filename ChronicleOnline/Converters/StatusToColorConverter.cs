@@ -17,6 +17,7 @@ namespace ChronicleOnline.Converters
                     StatusType.Exception => Colors.Red,
                     StatusType.NotClockedIn => Colors.Gray,
                     StatusType.ClockedIn => Colors.Green,
+                    StatusType.PersonNotFound => Colors.Orange,
                     _ => Colors.Yellow
                 };
             }

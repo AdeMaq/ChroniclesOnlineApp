@@ -17,6 +17,7 @@ namespace ChronicleOnline.Converters
                     StatusType.Exception => "Exception",
                     StatusType.NotClockedIn => "Not Clocked In",
                     StatusType.ClockedIn => "Clocked In",
+                    StatusType.PersonNotFound => "Person Not Found",
                     _ => "Unknown"
                 };
             }

@@ -6,6 +6,7 @@ namespace ChronicleOnline.Models
 {
     public enum StatusType
     {
+        PersonNotFound,
         Exception,
         NotClockedIn,
         ClockedIn,

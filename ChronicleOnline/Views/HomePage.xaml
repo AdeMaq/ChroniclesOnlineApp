@@ -5,8 +5,10 @@
              Title="HomePage"
              BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight},
                                                 Dark={StaticResource PageBackgroundDark}}">
-    
+
+
     <VerticalStackLayout>
+
         <Label 
             Text="Home Page"
             FontSize="Large"
@@ -14,4 +16,5 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
+    
 </ContentPage>

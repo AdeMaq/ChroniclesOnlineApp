@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChronicleOnline.Views.LiveStatusPage"
              xmlns:converters="clr-namespace:ChronicleOnline.Converters"
+             xmlns:models="clr-namespace:ChronicleOnline.Models"
              Title="LiveStatusPage"
+             x:Name="LiveStatusPageRoot"
              BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight},
                                                 Dark={StaticResource PageBackgroundDark}}">
 
@@ -62,6 +64,11 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border Style="{StaticResource ListCardBorder}">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={x:Reference LiveStatusPageRoot}, Path=BindingContext.TapPersonCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </Border.GestureRecognizers>
                             <Grid
                                 ColumnDefinitions="72,*"
                                 Padding="10,12"
@@ -77,11 +84,37 @@
                                                  Fill="{StaticResource AvatarBackground}" />
                                         <Label Text="{Binding Initials}"
                                                Style="{StaticResource AvatarInitialsLabel}" />
-                                        <Ellipse WidthRequest="10"
+                                        <!--<Ellipse WidthRequest="10"
                                                  HeightRequest="10"
                                                  HorizontalOptions="End"
                                                  VerticalOptions="End"
-                                                 Fill="{Binding Status, Converter={StaticResource StatusToColorConverter}}" />
+                                                 Fill="{Binding Status, Converter={StaticResource StatusToColorConverter}}" />-->
+                                        <Ellipse WidthRequest="10" HeightRequest="10"
+                                                 HorizontalOptions="End" VerticalOptions="End"
+                                                 Fill="{Binding Status, Converter={StaticResource StatusToColorConverter}}">
+                                            <Ellipse.Triggers>
+                                                <DataTrigger TargetType="Ellipse"
+                                                             Binding="{Binding Status}"
+                                                             Value="{x:Static models:StatusType.ClockedIn}">
+                                                    <Setter Property="Fill" Value="Green" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Ellipse"
+                                                             Binding="{Binding Status}"
+                                                             Value="{x:Static models:StatusType.NotClockedIn}">
+                                                    <Setter Property="Fill" Value="Gray" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Ellipse"
+                                                             Binding="{Binding Status}"
+                                                             Value="{x:Static models:StatusType.Exception}">
+                                                    <Setter Property="Fill" Value="Red" />
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Ellipse"
+                                                             Binding="{Binding Status}"
+                                                             Value="{x:Static models:StatusType.PersonNotFound}">
+                                                    <Setter Property="Fill" Value="Orange" />
+                                                </DataTrigger>
+                                            </Ellipse.Triggers>
+                                        </Ellipse>
                                     </Grid>
                                 </VerticalStackLayout>
                                 <StackLayout Grid.Column="1"
@@ -90,8 +123,28 @@
                                              Spacing="3">
                                     <Label Text="{Binding Name}"
                                            Style="{StaticResource CardPrimaryLabel}" />
+                                    <!--<Label Text="{Binding Status, Converter={StaticResource StatusToLabelConverter}}"
+                                           Style="{StaticResource CardSecondaryLabel}" />-->
                                     <Label Text="{Binding Status, Converter={StaticResource StatusToLabelConverter}}"
-                                           Style="{StaticResource CardSecondaryLabel}" />
+                                                                          Style="{StaticResource CardSecondaryLabel}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label"
+                                                         Binding="{Binding Status}"
+                                                         Value="{x:Static models:StatusType.ClockedIn}">
+                                                <Setter Property="Text" Value="Clocked In" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label"
+                                                         Binding="{Binding Status}"
+                                                         Value="{x:Static models:StatusType.NotClockedIn}">
+                                                <Setter Property="Text" Value="Not Clocked In" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label"
+                                                         Binding="{Binding Status}"
+                                                         Value="{x:Static models:StatusType.PersonNotFound}">
+                                                <Setter Property="Text" Value="Person Not Found" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
                                 </StackLayout>
                             </Grid>
                         </Border>
@@ -104,148 +157,3 @@
     </Grid>
 </ContentPage>
 
-
-
-
-<!--<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChronicleOnline.Views.LiveStatusPage"
-             xmlns:converters="clr-namespace:ChronicleOnline.Converters"
-             Title="LiveStatusPage"
-             BackgroundColor="{AppThemeBinding Light=White, Dark=Black}">
-
-    <ContentPage.Resources>
-        <converters:StatusToColorConverter x:Key="StatusToColorConverter" />
-        <converters:StatusToLabelConverter x:Key="StatusToLabelConverter" />
-    </ContentPage.Resources>
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="⊟" Order="Primary" Priority="0" />
-    </ContentPage.ToolbarItems>
-
-    <Grid RowDefinitions="Auto,Auto,*" Padding="12,8" >
-        <VerticalStackLayout Grid.Row="0" Grid.Column="0"  Spacing="4" Margin="0,4,0,8">
-            <Label Text="Tags:"
-                   VerticalOptions="Center"
-                   FontSize="14"
-                   TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                   FontAttributes="Bold"/>
-            <Border 
-                    Stroke="Gray"
-                    StrokeThickness="2"
-                    BackgroundColor="White">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="6" />
-                </Border.StrokeShape>
-                <Grid ColumnDefinitions="*,Auto" Padding="12,10">
-                    <Label Grid.Column="0"
-                           Text="All"
-                           VerticalOptions="Center"
-                           FontSize="14"
-                           TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                           FontAttributes="Bold"/>
-                    <Label Grid.Column="1"
-                           Text="⌄"
-                           VerticalOptions="Center"
-                           FontSize="18"
-                           TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                           FontAttributes="Bold"/>
-                </Grid>
-            </Border>
-        </VerticalStackLayout>
-        <Grid Grid.Row="1" Grid.Column="0"
-                ColumnDefinitions="Auto,*,Auto"
-                Margin="0,0,0,10">
-            <Button 
-                    Grid.Column="0"
-                    Text="‹"
-                    FontSize="22"
-                    TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                 FontAttributes="Bold"
-                Command="{Binding PreviousDayCommand}"
-                 BackgroundColor="Transparent"
-                  Margin="90,0,0,0"/>
-            <Label Grid.Column="1"
-                   Text="{Binding DisplayDate}"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   FontSize="16"
-                   FontAttributes="Bold"
-                   TextColor="{AppThemeBinding Light=Black, Dark=White}" />
-            <Button 
-                Grid.Column="2"
-                        Text="›"
-                        FontSize="22"
-                    FontAttributes="Bold"
-                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
-                        BackgroundColor="Transparent"
-                        Margin="0,0,90,0"
-                Command="{Binding NextDayCommand}"/>
-        </Grid>
-        <RefreshView 
-            Grid.Row="2" 
-            Grid.Column="0"
-            IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
-            Command="{Binding RefreshCommand}">
-
-            <CollectionView ItemsSource="{Binding Persons}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border Margin="0,4"
-                                Stroke="Grey"
-                                StrokeThickness="1"
-                                BackgroundColor="White">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="10" />
-                            </Border.StrokeShape>
-                            <Grid 
-                                ColumnDefinitions="72,*" 
-                                Padding="10,12"
-                                Margin="0,6,0,6">
-                                <VerticalStackLayout Grid.Column="0"
-                                                     HorizontalOptions="Center"
-                                                     VerticalOptions="Center"
-                                                     Spacing="4">
-                                    <Grid WidthRequest="48" HeightRequest="48"
-                                          HorizontalOptions="Center">
-                                        <Ellipse WidthRequest="48"
-                                                 HeightRequest="48"
-                                                 Fill="#607D8B" />
-                                        <Label Text="{Binding Initials}"
-                                               FontSize="15"
-                                               FontAttributes="Bold"
-                                               TextColor="{AppThemeBinding Light=White, Dark=White}"
-                                               HorizontalOptions="Center"
-                                               VerticalOptions="Center" />
-                                        <Ellipse WidthRequest="10"
-                                             HeightRequest="10"
-                                             HorizontalOptions="End"
-                                             VerticalOptions="End"
-                                             Fill="{Binding Status, Converter={StaticResource StatusToColorConverter}}" />
-                                    </Grid>
-
-                                </VerticalStackLayout>
-                                <StackLayout Grid.Column="1"
-                                             Grid.Row="1"
-                                             VerticalOptions="Center"
-                                             Spacing="3">
-                                    <Label Text="{Binding Name}"
-                                           FontSize="15"
-                                           FontAttributes="Bold"
-                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
-                                    <Label Text="{Binding Status, Converter={StaticResource StatusToLabelConverter}}"
-                                           FontSize="13"
-                                           TextColor="{AppThemeBinding Light=Black, Dark=White}" />
-                                </StackLayout>
-
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
-        </RefreshView>
-
-    </Grid>
-</ContentPage>-->
