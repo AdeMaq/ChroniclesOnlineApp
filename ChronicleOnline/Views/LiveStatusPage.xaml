@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChronicleOnline.Views.LiveStatusPage"
              xmlns:converters="clr-namespace:ChronicleOnline.Converters"
+             xmlns:services="clr-namespace:ChronicleOnline.Services"
              xmlns:models="clr-namespace:ChronicleOnline.Models"
-             Title="LiveStatusPage"
+             xmlns:extensions="clr-namespace:ChronicleOnline.Extensions"
+             Title="{extensions:Localize Key=LiveStatus_Title}"
              x:Name="LiveStatusPageRoot"
              BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight},
                                                 Dark={StaticResource PageBackgroundDark}}">
@@ -19,12 +21,13 @@
     </ContentPage.ToolbarItems>
 
     <Grid RowDefinitions="Auto,Auto,*" Padding="12,8">
-        <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="4" Margin="0,4,0,8">
-            <Label Text="Tags:" Style="{StaticResource SectionHeaderLabel}" />
+
+        <VerticalStackLayout Grid.Row="0" Spacing="4" Margin="0,4,0,8">
+            <Label Text="{extensions:Localize Key=Word_Tags}" Style="{StaticResource SectionHeaderLabel}" />
             <Border Style="{StaticResource DropdownBorder}">
                 <Grid ColumnDefinitions="*,Auto" Padding="12,10">
                     <Label Grid.Column="0"
-                           Text="All"
+                           Text="{extensions:Localize Key=Word_All}"
                            Style="{StaticResource DropdownValueLabel}" />
                     <Label Grid.Column="1"
                            Text="⌄"
@@ -33,34 +36,38 @@
             </Border>
         </VerticalStackLayout>
 
-        <Grid Grid.Row="1" Grid.Column="0"
+        <Grid Grid.Row="1"
               ColumnDefinitions="Auto,*,Auto"
               Margin="0,0,0,10">
-            <Button
-                Grid.Column="0"
-                Text="‹"
-                Style="{StaticResource NavArrowButton}"
-                Command="{Binding PreviousDayCommand}"
-                Margin="90,0,0,0" />
+            <Button Grid.Column="0"
+                    Text="‹"
+                    Style="{StaticResource NavArrowButton}"
+                    Command="{Binding PreviousDayCommand}"
+                    Margin="90,0,0,0" />
             <Label Grid.Column="1"
                    Text="{Binding DisplayDate}"
                    HorizontalOptions="Center"
                    Style="{StaticResource PageTitleLabel}" />
-            <Button
-                Grid.Column="2"
-                Text="›"
-                Style="{StaticResource NavArrowButton}"
-                Command="{Binding NextDayCommand}"
-                Margin="0,0,90,0" />
+            <Button Grid.Column="2"
+                    Text="›"
+                    Style="{StaticResource NavArrowButton}"
+                    Command="{Binding NextDayCommand}"
+                    Margin="0,0,90,0" />
         </Grid>
 
-        <RefreshView
-            Grid.Row="2"
-            Grid.Column="0"
-            IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
-            Command="{Binding RefreshCommand}">
+        <RefreshView Grid.Row="2"
+                     IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                     Command="{Binding RefreshCommand}">
 
             <CollectionView ItemsSource="{Binding Persons}">
+
+                <CollectionView.EmptyView>
+                    <Label Text="{extensions:Localize Key=LiveStatus_NoRecords}"
+                           HorizontalOptions="Center"
+                           Margin="0,32,0,0"
+                           Style="{StaticResource CardSecondaryLabel}" />
+                </CollectionView.EmptyView>
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border Style="{StaticResource ListCardBorder}">
@@ -69,26 +76,18 @@
                                     Command="{Binding Source={x:Reference LiveStatusPageRoot}, Path=BindingContext.TapPersonCommand}"
                                     CommandParameter="{Binding .}" />
                             </Border.GestureRecognizers>
-                            <Grid
-                                ColumnDefinitions="72,*"
-                                Padding="10,12"
-                                Margin="0,6,0,6">
+
+                            <Grid ColumnDefinitions="72,*" Padding="10,12" Margin="0,6,0,6">
+
                                 <VerticalStackLayout Grid.Column="0"
                                                      HorizontalOptions="Center"
                                                      VerticalOptions="Center"
                                                      Spacing="4">
-                                    <Grid WidthRequest="48" HeightRequest="48"
-                                          HorizontalOptions="Center">
-                                        <Ellipse WidthRequest="48"
-                                                 HeightRequest="48"
+                                    <Grid WidthRequest="48" HeightRequest="48" HorizontalOptions="Center">
+                                        <Ellipse WidthRequest="48" HeightRequest="48"
                                                  Fill="{StaticResource AvatarBackground}" />
                                         <Label Text="{Binding Initials}"
                                                Style="{StaticResource AvatarInitialsLabel}" />
-                                        <!--<Ellipse WidthRequest="10"
-                                                 HeightRequest="10"
-                                                 HorizontalOptions="End"
-                                                 VerticalOptions="End"
-                                                 Fill="{Binding Status, Converter={StaticResource StatusToColorConverter}}" />-->
                                         <Ellipse WidthRequest="10" HeightRequest="10"
                                                  HorizontalOptions="End" VerticalOptions="End"
                                                  Fill="{Binding Status, Converter={StaticResource StatusToColorConverter}}">
@@ -117,43 +116,22 @@
                                         </Ellipse>
                                     </Grid>
                                 </VerticalStackLayout>
+
                                 <StackLayout Grid.Column="1"
-                                             Grid.Row="1"
                                              VerticalOptions="Center"
                                              Spacing="3">
                                     <Label Text="{Binding Name}"
                                            Style="{StaticResource CardPrimaryLabel}" />
-                                    <!--<Label Text="{Binding Status, Converter={StaticResource StatusToLabelConverter}}"
-                                           Style="{StaticResource CardSecondaryLabel}" />-->
-                                    <Label Text="{Binding Status, Converter={StaticResource StatusToLabelConverter}}"
-                                                                          Style="{StaticResource CardSecondaryLabel}">
-                                        <Label.Triggers>
-                                            <DataTrigger TargetType="Label"
-                                                         Binding="{Binding Status}"
-                                                         Value="{x:Static models:StatusType.ClockedIn}">
-                                                <Setter Property="Text" Value="Clocked In" />
-                                            </DataTrigger>
-                                            <DataTrigger TargetType="Label"
-                                                         Binding="{Binding Status}"
-                                                         Value="{x:Static models:StatusType.NotClockedIn}">
-                                                <Setter Property="Text" Value="Not Clocked In" />
-                                            </DataTrigger>
-                                            <DataTrigger TargetType="Label"
-                                                         Binding="{Binding Status}"
-                                                         Value="{x:Static models:StatusType.PersonNotFound}">
-                                                <Setter Property="Text" Value="Person Not Found" />
-                                            </DataTrigger>
-                                        </Label.Triggers>
-                                    </Label>
+                                    <Label Text="{Binding LocalizedStatus}"
+                                           Style="{StaticResource CardSecondaryLabel}" />
                                 </StackLayout>
+
                             </Grid>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
         </RefreshView>
 
     </Grid>
 </ContentPage>
-

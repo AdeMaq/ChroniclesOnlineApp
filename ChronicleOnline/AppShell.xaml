@@ -5,14 +5,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ChronicleOnline"
     xmlns:views="clr-namespace:ChronicleOnline.Views"
-    Title="ChronicleOnline"
+    xmlns:services="clr-namespace:ChronicleOnline.Services"
+    xmlns:extensions="clr-namespace:ChronicleOnline.Extensions"
+    Title="{extensions:Localize Key=Shell_AppTitle}"
     Shell.FlyoutBehavior="Flyout"
     FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource FlyoutBackgroundLight},
                                              Dark={StaticResource FlyoutBackgroundDark}}">
 
     <Shell.FlyoutFooter>
         <VerticalStackLayout Margin="30">
-            <Button Style="{StaticResource LogoutButton}" />
+            <Picker
+                x:Name="LanguagePicker"
+                Title="{extensions:Localize Key=Nav_Language}"
+                SelectedIndexChanged="OnLanguageChanged">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>English</x:String>
+                        <x:String>اردو</x:String>
+                        <x:String>Français</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+                <Button 
+                    x:Name="LogoutButton"
+                    Style="{StaticResource LogoutButton}"
+                    Text="{extensions:Localize Key=Nav_Logout}"/>
         </VerticalStackLayout>
     </Shell.FlyoutFooter>
 
@@ -45,9 +62,11 @@
                 </HorizontalStackLayout>
                 <HorizontalStackLayout HorizontalOptions="Center" Spacing="0">
                     <Label
+                        x:Name="BrandNamePrimary"
                         Text="Chronicle"
                         Style="{StaticResource BrandNamePrimaryLabel}" />
                     <Label
+                        x:Name="BrandNameAccent"
                         Text="Online"
                         Style="{StaticResource BrandNameAccentLabel}" />
                 </HorizontalStackLayout>
@@ -58,39 +77,40 @@
     <FlyoutItem Route="home" FlyoutDisplayOptions="AsMultipleItems">
 
         <ShellContent
-            Title="Home"
+            Title="{extensions:Localize Key=Nav_Home}"
             ContentTemplate="{DataTemplate views:HomePage}"
             Route="homecontent" />
 
         <ShellContent
-            Title="Live status"
+            Title="{extensions:Localize Key=Nav_LiveStatus}"
             ContentTemplate="{DataTemplate views:LiveStatusPage}"
             Route="livestatuscontent" />
 
         <ShellContent
-            Title="Fire Report"
+            Title="{extensions:Localize Key=Nav_FireReport}"
             ContentTemplate="{DataTemplate views:FireReportPage}"
             Route="firereportcontent" />
 
         <ShellContent
-            Title="Holiday"
+            Title="{extensions:Localize Key=Nav_Holiday}"
             ContentTemplate="{DataTemplate views:HolidayPage}"
             Route="holidaycontent" />
 
         <ShellContent
-            Title="Overtime"
+            Title="{extensions:Localize Key=Nav_Overtime}"
             ContentTemplate="{DataTemplate views:OvertimePage}"
-            Route="overtimecontent" />
+            Route="overtimecontent" />  
+
 
     </FlyoutItem>
 
-    <FlyoutItem Title="Book Holiday/Sick/Absence" Route="bookholiday">
+    <FlyoutItem Title="{extensions:Localize Key=Nav_BookHoliday}" Route="bookholiday">
         <ShellContent
             ContentTemplate="{DataTemplate views:BookHolidayPage}"
             Route="bookholidaycontent" />
     </FlyoutItem>
 
-    <FlyoutItem Title="TA Fire reporting" Route="tafirereporting">
+    <FlyoutItem Title="{extensions:Localize Key=Nav_TaFireReporting}" Route="tafirereporting">
         <ShellContent
             ContentTemplate="{DataTemplate views:TaFireReportingPage}"
             Route="tafirereportingcontent" />
