@@ -1,4 +1,5 @@
 ﻿using System;
+using ChronicleOnline.Services;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -8,6 +9,8 @@ namespace ChronicleOnline.Models
 {
     public class Person:INotifyPropertyChanged
     {
+        public string LocalizedStatus =>
+            LocalizationManager.Instance[$"Status_{Status}"];
         private StatusType _status;
         public string? Name { get; set; }
         public string? Initials { get; set; }
@@ -19,7 +22,8 @@ namespace ChronicleOnline.Models
             {
                 _status = value;
                 OnPropertyChanged();
-                
+                OnPropertyChanged(nameof(LocalizedStatus));
+
             }
         }
         public bool HasException => Status == StatusType.Exception;

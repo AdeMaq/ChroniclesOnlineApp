@@ -2,12 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChronicleOnline.Views.BookHolidayPage"
-             Title="BookHolidayPage"
+             xmlns:services="clr-namespace:ChronicleOnline.Services"
+             xmlns:extensions="clr-namespace:ChronicleOnline.Extensions"
+             Title="{extensions:Localize Key=Nav_BookHoliday}"
              BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight},
                                                 Dark={StaticResource PageBackgroundDark}}">
     <VerticalStackLayout>
         <Label 
-            Text="Book Holiday Page"
+            Text="{extensions:Localize Key=BookHolidayPage_Message}"
             FontSize="Large"
             FontAttributes="Bold"
             VerticalOptions="Center" 

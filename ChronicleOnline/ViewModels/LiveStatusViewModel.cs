@@ -1,4 +1,5 @@
 ﻿using ChronicleOnline.Models;
+using ChronicleOnline.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +12,7 @@ namespace ChronicleOnline.ViewModels
 {
     public class LiveStatusViewModel:INotifyPropertyChanged
     {
+
         private readonly List<Person> _allPersons = new();
         private bool _isRefreshing;
         private DateTime _selectedDate = DateTime.Today;
