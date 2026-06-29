@@ -4,7 +4,7 @@
              xmlns:services="clr-namespace:ChronicleOnline.Services"
              x:Class="ChronicleOnline.Views.HomePage"
              xmlns:extensions="clr-namespace:ChronicleOnline.Extensions"
-             Title="{extensions:Localize Key=Nav_Home}"
+             Title="{extensions:Translate Key=Nav_Home}"
              BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight},
                                                 Dark={StaticResource PageBackgroundDark}}">
 
@@ -12,7 +12,7 @@
     <VerticalStackLayout>
 
         <Label 
-            Text="{extensions:Localize Key=HomePage_Message}"
+            Text="{extensions:Translate Key=HomePage_Message}"
             FontSize="Large"
             FontAttributes="Bold"
             VerticalOptions="Center" 

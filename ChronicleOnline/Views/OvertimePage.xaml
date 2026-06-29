@@ -4,13 +4,13 @@
              xmlns:services="clr-namespace:ChronicleOnline.Services"
              x:Class="ChronicleOnline.Views.OvertimePage"
              xmlns:extensions="clr-namespace:ChronicleOnline.Extensions"
-             Title="{extensions:Localize Key=Nav_Overtime}"
+             Title="{extensions:Translate Key=Nav_Overtime}"
              BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight},
                                                 Dark={StaticResource PageBackgroundDark}}">
 
     <VerticalStackLayout>
         <Label 
-            Text="{extensions:Localize Key=OvertimePage_Message}"
+            Text="{extensions:Translate Key=OvertimePage_Message}"
             FontSize="Large"
             FontAttributes="Bold"
             VerticalOptions="Center" 

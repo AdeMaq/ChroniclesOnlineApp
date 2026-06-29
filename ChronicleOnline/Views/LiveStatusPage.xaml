@@ -6,7 +6,7 @@
              xmlns:services="clr-namespace:ChronicleOnline.Services"
              xmlns:models="clr-namespace:ChronicleOnline.Models"
              xmlns:extensions="clr-namespace:ChronicleOnline.Extensions"
-             Title="{extensions:Localize Key=LiveStatus_Title}"
+             Title="{extensions:Translate Key=LiveStatus_Title}"
              x:Name="LiveStatusPageRoot"
              BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight},
                                                 Dark={StaticResource PageBackgroundDark}}">
@@ -23,11 +23,11 @@
     <Grid RowDefinitions="Auto,Auto,*" Padding="12,8">
 
         <VerticalStackLayout Grid.Row="0" Spacing="4" Margin="0,4,0,8">
-            <Label Text="{extensions:Localize Key=Word_Tags}" Style="{StaticResource SectionHeaderLabel}" />
+            <Label Text="{extensions:Translate Key=Word_Tags}" Style="{StaticResource SectionHeaderLabel}" />
             <Border Style="{StaticResource DropdownBorder}">
                 <Grid ColumnDefinitions="*,Auto" Padding="12,10">
                     <Label Grid.Column="0"
-                           Text="{extensions:Localize Key=Word_All}"
+                           Text="{extensions:Translate Key=Word_All}"
                            Style="{StaticResource DropdownValueLabel}" />
                     <Label Grid.Column="1"
                            Text="⌄"
@@ -62,7 +62,7 @@
             <CollectionView ItemsSource="{Binding Persons}">
 
                 <CollectionView.EmptyView>
-                    <Label Text="{extensions:Localize Key=LiveStatus_NoRecords}"
+                    <Label Text="{extensions:Translate Key=LiveStatus_NoRecords}"
                            HorizontalOptions="Center"
                            Margin="0,32,0,0"
                            Style="{StaticResource CardSecondaryLabel}" />

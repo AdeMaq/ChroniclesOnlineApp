@@ -4,13 +4,13 @@
              xmlns:services="clr-namespace:ChronicleOnline.Services"
              xmlns:extensions="clr-namespace:ChronicleOnline.Extensions"
              x:Class="ChronicleOnline.Views.TaFireReportingPage"
-             Title="{extensions:Localize Key=Nav_TaFireReporting}"
+             Title="{extensions:Translate Key=Nav_TaFireReporting}"
              BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight},
                                                 Dark={StaticResource PageBackgroundDark}}">
 
     <VerticalStackLayout>
         <Label 
-            Text="{extensions:Localize Key=TaFireReportingPage_Message}"
+            Text="{extensions:Translate Key=TaFireReportingPage_Message}"
             FontSize="Large"
             FontAttributes="Bold"
             VerticalOptions="Center" 

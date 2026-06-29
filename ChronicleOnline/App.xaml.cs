@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using ChronicleOnline.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ChronicleOnline
 {
@@ -7,6 +8,7 @@ namespace ChronicleOnline
         public App()
         {
             InitializeComponent();
+            LocalizationHelper.ApplySavedCulture();
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
