@@ -4,12 +4,12 @@
              x:Class="ChronicleOnline.Views.BookHolidayPage"
              xmlns:services="clr-namespace:ChronicleOnline.Services"
              xmlns:extensions="clr-namespace:ChronicleOnline.Extensions"
-             Title="{extensions:Localize Key=Nav_BookHoliday}"
+             Title="{extensions:Translate Key=Nav_BookHoliday}"
              BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight},
                                                 Dark={StaticResource PageBackgroundDark}}">
     <VerticalStackLayout>
         <Label 
-            Text="{extensions:Localize Key=BookHolidayPage_Message}"
+            Text="{extensions:Translate Key=BookHolidayPage_Message}"
             FontSize="Large"
             FontAttributes="Bold"
             VerticalOptions="Center" 
