@@ -7,6 +7,7 @@
     xmlns:views="clr-namespace:ChronicleOnline.Views"
     xmlns:services="clr-namespace:ChronicleOnline.Services"
     xmlns:extensions="clr-namespace:ChronicleOnline.Extensions"
+    xmlns:controls="clr-namespace:ChronicleOnline.Controls"
     Title="{extensions:Translate Key=Shell_AppTitle}"
     Shell.FlyoutBehavior="Flyout"
     FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource FlyoutBackgroundLight},

@@ -6,6 +6,7 @@
              xmlns:services="clr-namespace:ChronicleOnline.Services"
              xmlns:models="clr-namespace:ChronicleOnline.Models"
              xmlns:extensions="clr-namespace:ChronicleOnline.Extensions"
+             xmlns:controls="clr-namespace:ChronicleOnline.Controls"
              Title="{extensions:Translate Key=LiveStatus_Title}"
              x:Name="LiveStatusPageRoot"
              BackgroundColor="{AppThemeBinding Light={StaticResource PageBackgroundLight},
@@ -24,16 +25,25 @@
 
         <VerticalStackLayout Grid.Row="0" Spacing="4" Margin="0,4,0,8">
             <Label Text="{extensions:Translate Key=Word_Tags}" Style="{StaticResource SectionHeaderLabel}" />
-            <Border Style="{StaticResource DropdownBorder}">
-                <Grid ColumnDefinitions="*,Auto" Padding="12,10">
-                    <Label Grid.Column="0"
-                           Text="{extensions:Translate Key=Word_All}"
-                           Style="{StaticResource DropdownValueLabel}" />
-                    <Label Grid.Column="1"
-                           Text="⌄"
-                           Style="{StaticResource DropdownChevronLabel}" />
+            <!--<Border Style="{StaticResource DropdownBorder}">
+                <Grid ColumnDefinitions="*,Auto" Padding="12,3">
+
+                    <Picker
+                        x:Name="categoryPicker"
+                        Grid.Column="0"
+                        Title="{extensions:Translate Key=Word_All}"
+                        Style="{StaticResource DropdownValueLabel}"/>
+
+                    <Label
+                        Grid.Column="1"
+                        Text="⌄"
+                        Style="{StaticResource DropdownChevronLabel}"/>
+
                 </Grid>
-            </Border>
+            </Border>-->
+            <controls:CustomPicker
+                        x:Name="categoryPicker"
+                        Title="{extensions:Translate Key=Word_All}" />
         </VerticalStackLayout>
 
         <Grid Grid.Row="1"
